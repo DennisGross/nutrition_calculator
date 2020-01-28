@@ -8,6 +8,7 @@ Created on Mon Jan 28 18:46:07 2020
 import pandas as pd
 from pysmt.shortcuts import Symbol, Int, Times, Plus, And, Or, GE, LE, Equals, get_model
 from pysmt.typing import INT
+import sys
 
 
 
@@ -92,10 +93,19 @@ def print_dishes(dishes, dish_indizes):
 if __name__ == '__main__':
     # Read dish data set
     dishes = pd.read_csv("dishes.csv")
+    # Check if the number of arguments is correct
+    if len(sys.argv) != 3:
+        raise Exception("Correct command: PYTHON calculator.py NUMBER_OF_CALORIES NUMBER_OF_DISHES")
     # number of daily calories
-    number_of_calories = 1000
+    try:
+        number_of_calories = int(sys.argv[1])
+    except:
+        raise Exception("First argument has to be an integer")
     # number of dishes today
-    number_of_dishes = 3
+    try:
+        number_of_dishes = int(sys.argv[2])
+    except:
+        raise Exception("Second argument has to be an integer")
     indizes = nutrition_calculator(dishes,number_of_calories, number_of_dishes)
     if indizes != None:
         print_dishes(dishes, indizes)
