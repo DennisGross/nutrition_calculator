@@ -1,5 +1,5 @@
 # nutrition_calculator
-Optimize your diet via SMT
+Optimize your diet via SMT.
 
 ## Setup
 
